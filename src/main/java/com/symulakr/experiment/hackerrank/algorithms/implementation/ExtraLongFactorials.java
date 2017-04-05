@@ -5,20 +5,31 @@ import java.util.Scanner;
 
 public class ExtraLongFactorials {
 
-   public static void main(String[] args) {
+   public static void main(String[] args){
       Scanner scan = new Scanner(System.in);
       int n = scan.nextInt();
       scan.close();
-      if (n <= 1) {
-         System.out.println(1);
-         return;
-      }
-      BigInteger result = BigInteger.valueOf(n);
-      for (int i = 1; i<n; i++){
-         result = result.multiply(BigInteger.valueOf(i));
-      }
-      System.out.println(result);
+      System.out.println(loopFactorial(n));
+      System.out.println(recursionFactorial(n));
    }
 
+   public static BigInteger recursionFactorial(int n){
+      return recursionFactorial(BigInteger.valueOf(n));
+   }
+
+   public static BigInteger recursionFactorial(BigInteger bi){
+      if (bi.intValue() < 2) {
+         return BigInteger.ONE;
+      }
+      return bi.multiply(recursionFactorial(bi.subtract(BigInteger.ONE)));
+   }
+
+   public static BigInteger loopFactorial(int n){
+      BigInteger result = BigInteger.ONE;
+      while (n > 1) {
+         result = result.multiply(BigInteger.valueOf(n--));
+      }
+      return result;
+   }
 
 }
