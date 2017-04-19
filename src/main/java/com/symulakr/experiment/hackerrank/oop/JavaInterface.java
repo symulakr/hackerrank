@@ -20,7 +20,12 @@ public class JavaInterface {
          while (div < limit) {
             limit = n / div;
             if (n % div == 0) {
-               sum += (div + limit);
+               if (div != limit) {
+                  sum += (div + limit);
+               }
+               else {
+                  sum += div;
+               }
             }
             div++;
          }
@@ -33,7 +38,7 @@ public class JavaInterface {
    static class Solution {
       public static void main(String[] args){
          MyCalculator calculator = new MyCalculator();
-         IntStream.range(1000, 1010).forEach(calculator::divisor_sum);
+         IntStream.range(16, 17).forEach(calculator::divisor_sum);
          calculator.divisor_sum(Integer.MAX_VALUE);
          calculator.divisor_sum(Integer.MAX_VALUE - 1);
       }
